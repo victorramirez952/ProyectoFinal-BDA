@@ -17,10 +17,35 @@
 	{% import "macros/Tablas.html" as macroTablas %}
 	{{ macroTablas.TablaPersonal() }}
 	{{ macroBotones.BotonAgregar() }}
-	{{ macroModales.ModalRowTable() }}
-	{{ macroModales.ModalEliminar() }}
+	{{ macroModales.ModalPersonal() }}
 	</body>
 </html>
-<script src="../../static/js/ModalBuiling.js"></script>
-<script src="../../static/js/Modales.js"></script>
+<script>
+	let rowValues = [];
+
+	$('tr').on('click', 'button.btnEditar', function () {
+		var fila = $(this).closest('tr');
+		var valorColumna1 = fila.find('td:nth-child(1)').text();
+		var valorColumna2 = fila.find('td:nth-child(2)').text();
+		var valorColumna3 = fila.find('td:nth-child(3)').text();
+
+		// var headers = [];
+		// $(this).closest('table').find('th').each(function() {
+		// 	headers.push($(this).text());
+		// });
+		// console.log(headers);
+
+
+		// Pasar valores al modal
+		$('#valor-columna-1').text(headers[0]);
+		$('#valor-columna-2').text(headers[1]);
+		$('#valor-columna-3').text(headers[2]);
+		$('#modal').show();
+	});
+
+	$('#modal').on('click', '.btnCloseModal', function() {
+		$('#modal').hide();
+	});
+
+</script>
 
